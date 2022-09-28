@@ -2,33 +2,33 @@ apiVersion: v1
 entries:
   fluvio-app:
   - apiVersion: v2
-    created: "2022-09-28T21:29:19.63162+03:00"
+    created: "2022-09-28T23:11:19.078152+03:00"
     description: A Helm chart for Fluvio
     digest: cfbd0000af348834483de2aa09e345b2c1ae64fdc511adfb99995a3fa27ba8be
     name: fluvio-app
     type: application
     urls:
-    - https://oyelowo.github.io/helm-charts-mirror/fluvio-app-0.9.2.tgz
+    - https://oyelowo.github.io/fluvio-app-0.9.2.tgz
     version: 0.9.2
   fluvio-sys:
   - apiVersion: v2
-    created: "2022-09-28T21:29:19.631806+03:00"
+    created: "2022-09-28T23:11:19.078564+03:00"
     description: A Helm chart for Fluvio
     digest: ff9c9df98ce33522ab8b4fb1cf4fec6333ebb5589dc9789259a15dbbcdd94fcc
     name: fluvio-sys
     type: application
     urls:
-    - https://oyelowo.github.io/helm-charts-mirror/fluvio-sys-0.9.10.tgz
+    - https://oyelowo.github.io/fluvio-sys-0.9.10.tgz
     version: 0.9.10
   seaweedfs:
   - apiVersion: v1
     appVersion: "3.29"
-    created: "2022-09-28T21:29:19.634195+03:00"
+    created: "2022-09-28T23:11:19.079979+03:00"
     description: SeaweedFS
     digest: 837e80845d2032eac02f6d8e2e1f03f5c921c8698adb6c6af9809d14c7f8a3f7
     icon: https://raw.githubusercontent.com/seaweedfs/seaweedfs/master/note/seaweedfs.png
     name: seaweedfs
     urls:
-    - https://oyelowo.github.io/helm-charts-mirror/seaweedfs-3.29.tgz
+    - https://oyelowo.github.io/seaweedfs-3.29.tgz
     version: "3.29"
-generated: "2022-09-28T21:29:19.631225+03:00"
+generated: "2022-09-28T23:11:19.077508+03:00"
