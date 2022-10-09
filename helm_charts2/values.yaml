@@ -1,3 +1,4 @@
+# Available parameters and their default values for the SeaweedFS chart.
 
 global:
   registry: ""
@@ -59,11 +60,10 @@ master:
   disableHttp: false
 
   # can use ANY storage-class , example with local-path-provisioner
-  # data:
-  #   type: "persistentVolumeClaim"
-  #   size: "0.4Ti"
-  # #  size: "24Ti"
-  #   storageClass: "local-path-provisioner"
+  #  data:
+  #    type: "persistentVolumeClaim"
+  #    size: "24Ti"
+  #    storageClass: "local-path-provisioner"
   data:
     type: "hostPath"
     size: ""
@@ -92,28 +92,28 @@ master:
   # Affinity Settings
   # Commenting out or setting as empty the affinity variable, will allow
   # deployment to single node services such as Minikube
-  # affinity: 
-  #   podAntiAffinity:
-  #     requiredDuringSchedulingIgnoredDuringExecution:
-  #       - labelSelector:
-  #           matchLabels:
-  #             app: {{ template "seaweedfs.name" . }}
-  #             release: "{{ .Release.Name }}"
-  #             component: master
-  #         topologyKey: kubernetes.io/hostname
+  affinity: |
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app: {{ template "seaweedfs.name" . }}
+              release: "{{ .Release.Name }}"
+              component: master
+          topologyKey: kubernetes.io/hostname
 
   # Toleration Settings for master pods
   # This should be a multi-line string matching the Toleration array
   # in a PodSpec.
-  # tolerations: ""
+  tolerations: ""
 
   # nodeSelector labels for master pod assignment, formatted as a muli-line string.
   # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
   # Example:
   # nodeSelector: |
   #   beta.kubernetes.io/arch: amd64
-  # nodeSelector: |
-  #   sw-backend: "true"
+  nodeSelector: |
+    sw-backend: "true"
 
   # used to assign priority to master pods
   # ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
@@ -221,15 +221,15 @@ volume:
   # Affinity Settings
   # Commenting out or setting as empty the affinity variable, will allow
   # deployment to single node services such as Minikube
-  # affinity: 
-  #   podAntiAffinity:
-  #     requiredDuringSchedulingIgnoredDuringExecution:
-  #       - labelSelector:
-  #           matchLabels:
-  #             app: {{ template "seaweedfs.name" . }}
-  #             release: "{{ .Release.Name }}"
-  #             component: volume
-  #         topologyKey: kubernetes.io/hostname
+  affinity: |
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app: {{ template "seaweedfs.name" . }}
+              release: "{{ .Release.Name }}"
+              component: volume
+          topologyKey: kubernetes.io/hostname
 
   # Resource requests, limits, etc. for the server cluster placement. This
   # should map directly to the value of the resources field for a PodSpec,
@@ -247,8 +247,8 @@ volume:
   # Example:
   # nodeSelector: |
   #   beta.kubernetes.io/arch: amd64
-  # nodeSelector: |
-  #   sw-volume: "true"
+  nodeSelector: |
+    sw-volume: "true"
 
   # used to assign priority to server pods
   # ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
@@ -258,10 +258,9 @@ volume:
 filer:
   enabled: true
   repository: null
-  image: null
-  imageName: 
+  imageName: null
   imageTag: null
-  imageOverride: chrislusf/seaweedfs:3.29_full
+  imageOverride: null
   restartPolicy: null
   replicas: 1
   port: 8888
@@ -301,10 +300,9 @@ filer:
   storageClass: null
 
   # can use ANY storage-class , example with local-path-provisioner
-  # data:
+  #  data:
   #    type: "persistentVolumeClaim"
-  #    size: "0.4Ti"
-  #   #  size: "24Ti"
+  #    size: "24Ti"
   #    storageClass: "local-path-provisioner"
   data:
     type: "hostPath"
@@ -324,15 +322,15 @@ filer:
   # Affinity Settings
   # Commenting out or setting as empty the affinity variable, will allow
   # deployment to single node services such as Minikube
-  # affinity: 
-  #   podAntiAffinity:
-  #     requiredDuringSchedulingIgnoredDuringExecution:
-  #       - labelSelector:
-  #           matchLabels:
-  #             app: {{ template "seaweedfs.name" . }}
-  #             release: "{{ .Release.Name }}"
-  #             component: filer
-  #         topologyKey: kubernetes.io/hostname
+  affinity: |
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app: {{ template "seaweedfs.name" . }}
+              release: "{{ .Release.Name }}"
+              component: filer
+          topologyKey: kubernetes.io/hostname
 
   # updatePartition is used to control a careful rolling update of SeaweedFS
   # masters.
@@ -354,8 +352,8 @@ filer:
   # Example:
   # nodeSelector: |
   #   beta.kubernetes.io/arch: amd64
-  # nodeSelector: |
-  #   sw-backend: "true"
+  nodeSelector: |
+    sw-backend: "true"
 
   # used to assign priority to server pods
   # ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
@@ -383,21 +381,16 @@ filer:
 
   # extraEnvVars is a list of extra enviroment variables to set with the stateful set.
   extraEnvironmentVars:
-    WEED_TIKV_pdaddrs
-    WEED_TIKV_ENABLED: "true"
-    WEED_TIKV_PDADDRS: "seaweedfs-tikv-pd:2379"
-    # WEED_MYSQL_ENABLED: "false"
-    # WEED_MYSQL_HOSTNAME: "seaweedfs-tikv-tidb"
-    # WEED_MYSQL_PORT: "4000"
-    # WEED_MYSQL_USERNAME: "root"
-    # WEED_MYSQL_PASSWORD: ""
-    # WEED_MYSQL_DATABASE: "seaweedfs"
-    # WEED_MYSQL_CONNECTION_MAX_IDLE: "5"
-    # WEED_MYSQL_CONNECTION_MAX_OPEN: "75"
-    # # # "refresh" connection every 10 minutes, eliminating mysql closing "old" connections
-    # WEED_MYSQL_CONNECTION_MAX_LIFETIME_SECONDS: "600"
-    # # # enable usage of memsql as filer backend
-    # WEED_MYSQL_INTERPOLATEPARAMS: "true"
+    WEED_MYSQL_ENABLED: "true"
+    WEED_MYSQL_HOSTNAME: "mysql-db-host"
+    WEED_MYSQL_PORT: "3306"
+    WEED_MYSQL_DATABASE: "sw_database"
+    WEED_MYSQL_CONNECTION_MAX_IDLE: "5"
+    WEED_MYSQL_CONNECTION_MAX_OPEN: "75"
+    # "refresh" connection every 10 minutes, eliminating mysql closing "old" connections
+    WEED_MYSQL_CONNECTION_MAX_LIFETIME_SECONDS: "600"
+    # enable usage of memsql as filer backend
+    WEED_MYSQL_INTERPOLATEPARAMS: "true"
     # if you want to use leveldb2, then should enable "enablePVC". or you may lose your data.
     WEED_LEVELDB2_ENABLED: "false"
     # with http DELETE, by default the filer would check whether a folder is empty.
@@ -459,8 +452,8 @@ s3:
   # Example:
   # nodeSelector: |
   #   beta.kubernetes.io/arch: amd64
-  # nodeSelector: |
-  #   sw-backend: "true"
+  nodeSelector: |
+    sw-backend: "true"
 
   # used to assign priority to server pods
   # ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
@@ -478,4 +471,4 @@ certificates:
   keyAlgorithm: rsa
   keySize: 2048
   duration: 2160h # 90d
-  renewBefore: 360h # 15d                                                                                            git:(master|✚1…1 
+  renewBefore: 360h # 15d

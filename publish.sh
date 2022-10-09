@@ -6,6 +6,6 @@ helm template -f ./fluvio/k8-util/helm/fluvio-sys/values.yaml fluvio-sys  ./fluv
 
 
 
-helm lint helm_charts2
-helm package helm_charts2
-helm repo index --url https://seaweedfs.github.io/<repo-name>/ .
+# helm lint helm_charts2
+# helm package helm_charts2
+# helm repo index --url https://seaweedfs.github.io/<repo-name>/ .
