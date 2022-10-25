@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   fluvio-app:
   - apiVersion: v2
-    created: "2022-10-09T15:46:27.318145+03:00"
+    created: "2022-10-25T10:25:13.046253+03:00"
     description: A Helm chart for Fluvio
     digest: 1606c924b2d71aec9e4d2199c464286a02bb7fe06e435b37c80200e80600de06
     name: fluvio-app
@@ -12,7 +12,7 @@ entries:
     version: 0.9.2
   fluvio-sys:
   - apiVersion: v2
-    created: "2022-10-09T15:46:27.31833+03:00"
+    created: "2022-10-25T10:25:13.046449+03:00"
     description: A Helm chart for Fluvio
     digest: b474c59a275552a9fab8235fa0ea1d0f5d756cfba5dde1e14820a26091a9eedb
     name: fluvio-sys
@@ -22,8 +22,17 @@ entries:
     version: 0.9.10
   seaweedfs:
   - apiVersion: v1
+    appVersion: "3.31"
+    created: "2022-10-25T10:25:13.050604+03:00"
+    description: SeaweedFS
+    digest: f33b74d68067256dff1424a089b65b1680b99c949698d0d5d9bbf48cd242f8e0
+    name: seaweedfs
+    urls:
+    - https://oyelowo.github.io/seaweedfs-3.31.tgz
+    version: "3.31"
+  - apiVersion: v1
     appVersion: "3.30"
-    created: "2022-10-09T15:46:27.320359+03:00"
+    created: "2022-10-25T10:25:13.049373+03:00"
     description: SeaweedFS
     digest: 04ee1f52ff68a0aa680026cf47f6dd2b2c0c08cfdcb428b8d0db393451698d82
     name: seaweedfs
@@ -32,7 +41,7 @@ entries:
     version: "3.30"
   - apiVersion: v1
     appVersion: "3.29"
-    created: "2022-10-09T15:46:27.319405+03:00"
+    created: "2022-10-25T10:25:13.048014+03:00"
     description: SeaweedFS
     digest: 837e80845d2032eac02f6d8e2e1f03f5c921c8698adb6c6af9809d14c7f8a3f7
     icon: https://raw.githubusercontent.com/seaweedfs/seaweedfs/master/note/seaweedfs.png
@@ -40,4 +49,4 @@ entries:
     urls:
     - https://oyelowo.github.io/seaweedfs-3.29.tgz
     version: "3.29"
-generated: "2022-10-09T15:46:27.317159+03:00"
+generated: "2022-10-25T10:25:13.045842+03:00"
